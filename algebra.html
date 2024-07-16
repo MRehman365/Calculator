@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: wheat;
+        }
+        .container{
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .top{
+            background-color: whitesmoke;
+            height: 80px;
+            width: 100%;
+            text-align: center;
+        }
+        .formula{
+            margin-top: 20px;
+            height: 100px;
+            width: 100%;
+            background-color: white;
+            text-align: center;
+            line-height: 90px;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0px 0px 10px black;
+        }
+        input{
+            border: none;
+            text-align: center;
+            width: 40px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .text{
+            height: 80px;
+            width: 100%;
+            background-color: wheat;
+            line-height: 80px;
+            font-size: 15px;
+            font-family: arial;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top">
+            <h1>Algebra Formulas</h1>
+        </div>
+        <div class="text"><p>Click on "a" and "b" for entering the values. Click on "=" Button for getting answer</p></div>
+        <div class="formula">
+            <div class="getvalue">( <input type="number" id="first" placeholder="a">+ <input type="number" id="second" placeholder="b">)<sup>2</sup> <button onclick="firstFormula()" style="font-size: 20px; font-weight: bold; border: none; background-color: white;">=</button> <input id="firstResult" type="number" placeholder="Answer is Here"  style="width: 200px;"></div>
+        </div>
+        
+    <div class="formula">
+        <div class="getvalue">( <input type="number" id="c" placeholder="a">- <input type="number" id="d" placeholder="b">)<sup>2</sup> <button onclick="secondFormula()" style="font-size: 20px; font-weight: bold; border: none; background-color: white;">=</button> <input id="secondResult" type="number" placeholder="Answer is Here" style="width: 200px;"></div>
+    </div>
+
+    <div class="formula">
+        <div class="getvalue"> <input type="number" id="e" placeholder="a²">+ <input type="number" id="f" placeholder="b²"> <button onclick="thirdFormula()" style="font-size: 20px; font-weight: bold; border: none; background-color: white;">=</button> <input id="thirdResult" type="number" placeholder="Answer is Here"  style="width: 200px;"></div>
+    </div>
+
+    <div class="formula">
+        <div class="getvalue">( <input type="number" id="g" placeholder="a">+ <input type="number" id="h" placeholder="b">)<sup>3</sup> <button onclick="fourthFormula()" style="font-size: 20px; font-weight: bold; border: none; background-color: white;">=</button> <input id="fourthResult" type="number" placeholder="Answer is Here"  style="width: 200px;"></div>
+    </div>
+    </div>
+    <script>
+        function firstFormula(){
+            var firstValue=parseInt(document.getElementById("first").value);
+            var secondValue=parseInt(document.getElementById("second").value);
+            var result = Math.pow(firstValue + secondValue, 2);
+            document.getElementById("firstResult").value = result; 
+        }
+
+        function secondFormula(){
+            var firstValue=parseInt(document.getElementById("c").value);
+            var secondValue=parseInt(document.getElementById("d").value);
+            var result = Math.pow(firstValue - secondValue, 2);
+            document.getElementById("secondResult").value = result; 
+        }
+
+        function thirdFormula(){
+            var thirdValue=parseInt(document.getElementById("e").value);
+            var fourthValue=parseInt(document.getElementById("f").value);
+            var result = Math.pow(thirdValue, 2) - Math.pow(fourthValue, 2);
+            document.getElementById("thirdResult").value = result;
+        }
+        function fourthFormula(){
+            var a = parseInt(document.getElementById("g").value);
+            var b = parseInt(document.getElementById("h").value);
+            var result = Math.pow(a + b, 3);
+            document.getElementById("fourthResult").value = result;
+        }
+    </script>
+</body>
+</html>

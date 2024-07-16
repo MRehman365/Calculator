@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  .calculator {
+    width: 300px; /* Adjusted width to accommodate additional buttons */
+    margin: 100px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #313131;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .output {
+    height: 80px;
+    font-size: 30px;
+    text-align: right;
+    line-height: 150px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    position: relative;
+  }
+  .buttons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .buttons button {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    font-size: 20px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .buttons button.operator {
+    background-color: #4e87f0;
+    color: #fff;
+  }
+  .buttons button.equal {
+    background-color: #5cb85c;
+    color: #fff;
+  }
+  .sci-btn {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  .sci-btn button {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    font-size: 16px; /* Reduced font size to fit buttons */
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .sci-btn button.operator {
+    background-color: #ffa500; /* Orange color for scientific buttons */
+    color: #fff;
+  }
+  p{
+    color: white;
+    font-size: medium;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+  
+</style>
+</head>
+<body>
+<div class="calculator">
+<p> Md Rehman</p>
+  <div class="output" id="output">0</div>
+  <div class="sci-btn">
+    <button onclick="squareRoot()">√</button>
+    <button onclick="square()">x<sup>2</sup></button>
+    <button onclick="cube()">x<sup>3</sup></button>
+    <button onclick="trigFunction('sin')">sin</button>
+    <button onclick="trigFunction('cos')">cos</button>
+    <button onclick="trigFunction('tan')">tan</button>
+    <button onclick="logarithm('log')">log</button>
+    <button onclick="logarithm('ln')">ln</button>
+  </div>
+  <div class="buttons">
+    <button onclick="clearOutput()" style="background-color: rgba(255, 0, 0, 0.541);">AC</button>
+    <button onclick="appendInput('7')">7</button>
+    <button onclick="appendInput('8')">8</button>
+    <button onclick="appendInput('9')">9</button>
+    <button class="operator" onclick="appendInput('+')">+</button>
+    <button onclick="appendInput('4')">4</button>
+    <button onclick="appendInput('5')">5</button>
+    <button onclick="appendInput('6')">6</button>
+    <button class="operator" onclick="appendInput('-')">-</button>
+    <button onclick="appendInput('1')">1</button>
+    <button onclick="appendInput('2')">2</button>
+    <button onclick="appendInput('3')">3</button>
+    <button class="operator" onclick="appendInput('*')" style="line-height: 70px;">*</button>
+    <button onclick="appendInput('0')">0</button>
+    <button onclick="appendInput('.')">.</button>
+    <button class="equal" onclick="calculate()">=</button>
+    <button class="operator" onclick="appendInput('/')">/</button>
+  </div>
+</div>
+<script>
+  let output = document.getElementById('output');
+  let input = '';
+
+  function appendInput(value) {
+    if (output.textContent === 'Error') {
+      output.textContent = '0';
+      input = '';
+    }
+    input += value;
+    output.textContent = input;
+  }
+
+  function clearOutput() {
+    input = '';
+    output.textContent = '0';
+  }
+
+  function calculate() {
+    try {
+      let result = eval(input);
+      if (isNaN(result) || !isFinite(result)) {
+        output.textContent = 'Please Input value';
+      } else {
+        output.textContent = result;
+        input = result.toString();
+      }
+    } catch (error) {
+      output.textContent = 'Error';
+      input = '';
+    }
+  }
+
+  function squareRoot() {
+    output.textContent = Math.sqrt(parseFloat(input));
+    input = output.textContent;
+  }
+
+  function square() {
+    output.textContent = Math.pow(parseFloat(input), 2);
+    input = output.textContent;
+  }
+
+  function cube() {
+    output.textContent = Math.pow(parseFloat(input), 3);
+    input = output.textContent;
+  }
+
+  function trigFunction(func) {
+    let radians = parseFloat(input) * (Math.PI / 180); // Convert to radians
+    switch(func) {
+      case 'sin':
+        output.textContent = Math.sin(radians);
+        break;
+      case 'cos':
+        output.textContent = Math.cos(radians);
+        break;
+      case 'tan':
+        output.textContent = Math.tan(radians);
+        break;
+    }
+    input = output.textContent;
+  }
+
+  function logarithm(func) {
+    switch(func) {
+      case 'log':
+        output.textContent = Math.log10(parseFloat(input));
+        break;
+      case 'ln':
+        output.textContent = Math.log(parseFloat(input));
+        break;
+    }
+    input = output.textContent;
+  }
+</script>
+</body>
+</html>
